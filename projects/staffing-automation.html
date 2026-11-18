@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staffing Automation Platform — Andrés Mendoza</title>
+<meta name="description" content="Case study: a Zoho CRM ↔ Recruit staffing automation that cut ~94 hours/week of manual work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' fill='%234ad3a8'>&gt;</text></svg>">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html" style="text-decoration:none;">andres<span class="px">.</span>mendoza</a>
+    <div class="links">
+      <a href="../index.html#work">work</a>
+      <a href="../index.html#about">about</a>
+      <a href="../index.html#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="wrap">
+    <a class="back mono" href="../index.html">← back to work</a>
+    <div class="ptag mono">Zoho CRM · Recruit · Analytics · Deluge</div>
+    <h1>Staffing Automation Platform</h1>
+    <p class="sub">An end-to-end Zoho CRM ↔ Recruit integration that turns a manual, Excel-and-email staffing operation into an automated pipeline — from the first client lead to an employee's first day.</p>
+    <div class="stack">
+      <span class="chip">Zoho CRM</span><span class="chip">Zoho Recruit</span><span class="chip">Deluge</span>
+      <span class="chip">Analytics</span><span class="chip">Writer</span><span class="chip">WorkDrive</span>
+      <span class="chip">Forms</span><span class="chip">Flow</span><span class="chip">Creator</span><span class="chip">Sign</span>
+    </div>
+  </div>
+</header>
+
+<section class="sec" style="border-top:none; padding-top:20px;">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="num" data-count="94" data-suffix=" hrs">0 hrs</div><div class="lab">manual work removed per week <span class="dim">(est.)</span></div></div>
+      <div class="stat"><div class="num" data-count="82" data-suffix="%">0%</div><div class="lab">less manual effort <span class="dim">(est.)</span></div></div>
+      <div class="stat"><div class="num" data-count="9" data-suffix="">0</div><div class="lab">Zoho apps integrated</div></div>
+      <div class="stat"><div class="num mono" style="font-size:30px;">solo</div><div class="lab">designed, built &amp; tested end-to-end</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <div class="prose">
+      <p>The staffing operation ran on <strong>Excel and email</strong>. Every placement — from the first client lead to the employee starting work — was assembled by hand across several roles. The work was slow, repetitive and error-prone: manual data entry invited typos, duplicates and bad data, and the same research and drafting was redone from scratch every time.</p>
+      <p>Mapped out, the weekly manual effort came to roughly <strong>115 hours a week</strong> across the BDR, recruiter and customer-success roles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Before → after</h2>
+    <div class="ba">
+
+      <!-- BEFORE -->
+      <div class="ba-col before reveal">
+        <div class="btitle">Before · manual</div>
+        <div class="bsub">Excel + email · hand-entry, drafting, research</div>
+        <div class="step"><div class="top"><span class="name">Input leads into Excel <span class="who">BDR</span></span><span class="hrs">4.5</span></div><div class="bar"><span data-w="22"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Create LOI by hand <span class="who">BDR</span></span><span class="hrs">20.8</span></div><div class="bar"><span data-w="100"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Source &amp; enter candidates <span class="who">Recruiter</span></span><span class="hrs">9.6</span></div><div class="bar"><span data-w="46"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Research salary margins <span class="who">Recruiter</span></span><span class="hrs">19.2</span></div><div class="bar"><span data-w="92"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Interview candidates <span class="who">Recruiter</span></span><span class="hrs">16.5</span></div><div class="bar"><span data-w="79"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Draft candidate offer <span class="who">Recruiter</span></span><span class="hrs">3.6</span></div><div class="bar"><span data-w="17"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Draft SLA for client <span class="who">BDR</span></span><span class="hrs">13.8</span></div><div class="bar"><span data-w="66"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Email rejections <span class="who">Recruiter</span></span><span class="hrs">6.9</span></div><div class="bar"><span data-w="33"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Track attendance by hand <span class="who">CSM</span></span><span class="hrs">20.0</span></div><div class="bar"><span data-w="96"></span></div></div>
+        <div class="ba-total"><span class="t-lab">Total manual</span><span class="t-num"><span data-count="115" data-suffix="">0</span> <span style="font-size:13px; color:var(--mute);">hrs/wk</span></span></div>
+      </div>
+
+      <!-- AFTER -->
+      <div class="ba-col after reveal">
+        <div class="btitle">After · automated</div>
+        <div class="bsub">CRM · Recruit · Analytics · Writer · Flow · Creator</div>
+        <div class="step"><div class="top"><span class="name">Lead → structured CRM entry <span class="who">BDR</span></span><span class="hrs">0.6</span></div><div class="bar"><span data-w="3"></span></div></div>
+        <div class="step"><div class="top"><span class="name">LOI generated by button <span class="who">System</span></span><span class="hrs">1.0</span></div><div class="bar"><span data-w="5"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Career Portal + AI sourcing <span class="who">System</span></span><span class="hrs">1.9</span></div><div class="bar"><span data-w="9"></span></div></div>
+        <div class="step zero"><div class="top"><span class="name">Salary auto-estimated <span class="who">System</span></span><span class="hrs">~0</span></div><div class="bar"><span data-w="1"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Interview (notes auto-filled) <span class="who">Recruiter</span></span><span class="hrs">16.5</span></div><div class="bar"><span data-w="79"></span></div></div>
+        <div class="step"><div class="top"><span class="name">Offer from form + button <span class="who">System</span></span><span class="hrs">0.6</span></div><div class="bar"><span data-w="3"></span></div></div>
+        <div class="step"><div class="top"><span class="name">SLA generated instantly <span class="who">System</span></span><span class="hrs">0.2</span></div><div class="bar"><span data-w="1"></span></div></div>
+        <div class="step zero"><div class="top"><span class="name">Rejection email automated <span class="who">System</span></span><span class="hrs">~0</span></div><div class="bar"><span data-w="1"></span></div></div>
+        <div class="step zero"><div class="top"><span class="name">Self-service attendance <span class="who">Employees</span></span><span class="hrs">~0</span></div><div class="bar"><span data-w="1"></span></div></div>
+        <div class="ba-total"><span class="t-lab">Total after</span><span class="t-num"><span data-count="21" data-suffix="">0</span> <span style="font-size:13px; color:var(--mute);">hrs/wk</span></span></div>
+      </div>
+
+    </div>
+
+    <div class="saved-band reveal">
+      <span class="big"><span data-count="94" data-suffix="">0</span> hrs / week saved</span>
+      <span class="lab">≈ 82% less manual work · interview time unchanged, only better captured</span>
+    </div>
+    <div class="note">Volumes and times are estimates, using midpoint anchors (~5.5 hires/week, 15+ leads/week) and labeled funnel ratios.</div>
+  </div>
+</section>
+
+<!-- WHAT I BUILT -->
+<section class="sec">
+  <div class="wrap">
+    <h2>What I built</h2>
+    <div class="prose">
+      <p>A bidirectional <strong>Zoho CRM ↔ Zoho Recruit</strong> integration built on a seat-grain data model, where <strong>one seat = one hire = one unit of revenue</strong>.</p>
+
+      <h3>Zoho apps</h3>
+      <ul>
+        <li><strong>CRM</strong> — Deals as "Job Requests," a custom <strong>Seats</strong> module, Accounts, Contacts. The reporting source of truth.</li>
+        <li><strong>Recruit</strong> — Job Openings, Candidates, Applications, Offers; a Career Portal for inbound applications.</li>
+        <li><strong>Analytics</strong> — seat-grain reporting (revenue, margin, fill rate, time-to-fill, fall-through).</li>
+        <li><strong>Writer + WorkDrive</strong> — SLA document generation and per-client filing.</li>
+        <li><strong>Forms + Flow + Creator</strong> — the employee onboarding subsystem and Employee Portal.</li>
+        <li><strong>Sign</strong> — e-signature on offers.</li>
+      </ul>
+
+      <h3>Deluge logic</h3>
+      <ul>
+        <li>Outbound <strong>Job Request → Recruit Job Opening</strong> sync with an idempotent, additive <strong>seat fan-out</strong> (N positions → N seats; re-sending amends rather than duplicates).</li>
+        <li>Inbound <strong>candidate binding</strong> triggered on the Recruit <code>Offer made</code> status — the definitive commitment signal — which claims a seat through a CRM Blueprint.</li>
+        <li><strong>Offer-accepted</strong> advancement, and <strong>fall-through / reopen</strong> handling (declined, withdrawn, no-show → seat reopens, reason recorded).</li>
+        <li><strong>SLA generation</strong> — a Writer template merge → PDF → filed to a per-client WorkDrive folder, driven from the Seat, Job Request and Client data.</li>
+        <li>A nightly <strong>reconciliation sweep</strong> — a detect-and-report safety net for stuck seats and orphaned approvals.</li>
+      </ul>
+
+      <h3>Integrations &amp; APIs</h3>
+      <ul>
+        <li>Bidirectional CRM ↔ Recruit via Deluge <code>invokeurl</code> and <code>COQL</code>, over dedicated connections, with a two-way <strong>ID handshake</strong> so each system can find the other's record.</li>
+        <li><strong>AI meeting notetakers</strong> wired to the Zoho Recruit API to auto-fill interview highlights.</li>
+        <li><strong>Auto-estimated salary margins</strong> from hiring history plus monthly AI-assisted research, replacing per-request manual research.</li>
+        <li>A <strong>form-driven onboarding chain</strong>: Recruit <code>Joined</code> status → pre-filled Zoho Form → Zoho Flow → Zoho Creator employee record → Employee Portal user provisioned.</li>
+        <li><strong>Self-service attendance</strong>: employees clock in/out in the Employee Portal, replacing manual tracking.</li>
+      </ul>
+
+      <h3>Architecture</h3>
+      <div class="arch"><span class="n">CRM</span> (Job Requests + Seats) ⇄ <span class="n">Recruit</span> (Job Openings + Applications + Offers)<br>&nbsp;&nbsp;↳ <span class="a">Analytics</span> reads the seats · <span class="a">Writer/WorkDrive</span> produce SLAs<br>&nbsp;&nbsp;↳ <span class="a">Forms → Flow → Creator</span> provision the Employee Portal</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The result</h2>
+    <div class="prose">
+      <ul>
+        <li><strong>Manual effort cut from ~115 to ~21 hrs/week</strong> — roughly <strong>94 hrs/week saved</strong>, about an 82% reduction <span class="dim">(estimate)</span>.</li>
+        <li>The heaviest wins were the slow, repeated tasks — <strong>LOI drafting, salary research, SLA drafting and attendance</strong> — together ~73 hrs/week, now near-zero.</li>
+        <li><strong>Errors reduced:</strong> lead entry moved from free-typed Excel to validated, de-duplicated CRM records; LOIs, offers and SLAs are generated from source data instead of re-keyed.</li>
+        <li><strong>Interview time is unchanged</strong> and deliberately left in the "after" total — the system captures the notes, it doesn't shorten the conversation. The savings figure stays honest.</li>
+        <li>The automation spine is built and tested live; the reconciliation sweep runs; the Analytics model is built; onboarding is designed and partially built.</li>
+      </ul>
+      <p class="note">Operational metrics (clients served, placements per week, go-live date) available on request.</p>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div class="mono" style="color:var(--text); font-size:15px; margin-bottom:6px;">Let's build something.</div>
+      <div class="mute" style="font-size:14px;">Panama City, Panama</div>
+    </div>
+    <div class="links">
+      <a href="mailto:andresmendozaerna@gmail.com">email</a>
+      <a href="https://github.com/AndresDarioMendoza2910" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/andr%C3%A9s-dar%C3%ADo-mendoza-bernal-420b4b1bb/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// scroll reveal + count-up + bar grow
+const seen=new WeakSet();
+function countUp(el){
+  const target=parseFloat(el.dataset.count), suf=el.dataset.suffix||"";
+  const dur=1100, t0=performance.now();
+  function tick(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e)+suf;
+    if(p<1) requestAnimationFrame(tick); else el.textContent=target+suf;
+  }
+  requestAnimationFrame(tick);
+}
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(c=>{ if(!seen.has(c)){seen.add(c);countUp(c);} });
+      e.target.querySelectorAll('.bar span').forEach(b=>{ b.style.width=(b.dataset.w||0)+'%'; });
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll('.reveal, .stats, .ba-col').forEach(el=>io.observe(el));
+// stats band counts (not .reveal) -> observe separately handled above
+document.querySelectorAll('.stat [data-count]').forEach(c=>{
+  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting&&!seen.has(c)){seen.add(c);countUp(c);o.unobserve(c);}})},{threshold:.5});
+  o.observe(c);
+});
+</script>
+</body>
+</html>

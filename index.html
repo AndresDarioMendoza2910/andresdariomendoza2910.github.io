@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Andrés Mendoza — Zoho Developer & Automation Specialist</title>
+<meta name="description" content="Andrés Mendoza — Zoho Developer & Implementation Specialist. Business systems, Deluge automation, CRM & ERP integration.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' fill='%234ad3a8'>&gt;</text></svg>">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">andres<span class="px">.</span>mendoza</span>
+    <div class="links">
+      <a href="#work">work</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kick mono">// zoho developer &amp; implementation specialist</div>
+    <h1>I turn manual business<br>processes into <span class="accent">automated systems</span>.</h1>
+    <div class="role mono">Deluge · CRM &amp; ERP integration · process design · automation</div>
+    <p class="lede">2+ years designing and automating business systems across Zoho CRM, Creator, Recruit, Flow, Inventory and Projects. I take a process from discovery and architecture through development, integration, documentation and training. 100+ automations built for 20+ clients and teams.</p>
+    <div class="cta">
+      <a class="btn primary" href="#work">View work ↓</a>
+      <a class="btn" href="mailto:andresmendozaerna@gmail.com">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section class="sec" id="work">
+  <div class="wrap">
+    <h2>Selected work</h2>
+    <div class="grid">
+
+      <a class="card reveal" href="projects/staffing-automation.html">
+        <div class="ptag mono">CRM · Recruit · Analytics</div>
+        <h3>Staffing Automation Platform</h3>
+        <p>An end-to-end Zoho CRM ↔ Recruit integration that turns a manual, Excel-and-email staffing operation into an automated pipeline — from first client lead to an employee's first day.</p>
+        <div class="stack">
+          <span class="chip">Zoho CRM</span>
+          <span class="chip">Recruit</span>
+          <span class="chip">Deluge</span>
+          <span class="chip">Analytics</span>
+          <span class="chip">Flow</span>
+          <span class="chip">Creator</span>
+        </div>
+        <div class="arrow mono">Read the case study →</div>
+      </a>
+
+      <div class="card soon">
+        <div class="ptag mono">more</div>
+        <h3>More projects</h3>
+        <p>Additional implementations across CRM, Books, Inventory, FSM and Projects — case studies in progress.</p>
+        <div class="arrow mono">Coming soon</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="about">
+  <div class="wrap">
+    <h2>About</h2>
+    <div class="prose">
+      <p>I'm <strong>Andrés Mendoza</strong>, a Zoho Developer and Implementation Specialist based in Panama City. I translate business requirements into scalable systems — running the full arc from requirements workshops and process mapping through solution design, Deluge development, integration, UAT, documentation and user training.</p>
+      <p>I've delivered <strong>20+ end-to-end Zoho implementations</strong> across CRM, Books, Inventory, FSM, Projects, Flow and Forms, written <strong>100+ automations and custom functions</strong>, and trained <strong>100+ users</strong>. I also administer Microsoft Entra ID and handle the integration plumbing — REST APIs, webhooks, JSON, data migration.</p>
+      <h3>Toolbox</h3>
+      <ul>
+        <li><strong>Platforms:</strong> Zoho CRM, Creator, Recruit, Books, Flow, Inventory, FSM, Projects, Forms · Microsoft Entra ID</li>
+        <li><strong>Development:</strong> Zoho Deluge, REST APIs, webhooks, JSON, custom functions, data migration</li>
+        <li><strong>Process:</strong> requirements gathering, process mapping, solution design, UAT, documentation, change management</li>
+        <li><strong>Analytics:</strong> Zoho Analytics, Power BI, Excel</li>
+        <li><strong>Languages:</strong> English (fluent), Spanish (native), German (basic)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div class="mono" style="color:var(--text); font-size:15px; margin-bottom:6px;">Let's build something.</div>
+      <div class="mute" style="font-size:14px;">Panama City, Panama</div>
+    </div>
+    <div class="links">
+      <a href="mailto:andresmendozaerna@gmail.com">email</a>
+      <a href="https://github.com/AndresDarioMendoza2910" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/andr%C3%A9s-dar%C3%ADo-mendoza-bernal-420b4b1bb/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+  <div class="wrap"><div class="copy mono" style="margin-top:24px;">© 2026 Andrés Mendoza · built as a static site, hosted on GitHub Pages</div></div>
+</footer>
+
+<script>
+// scroll reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
