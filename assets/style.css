@@ -194,3 +194,10 @@ dialog.lightbox .lb-cap{font-family:var(--mono); font-size:13px; color:var(--mut
 dialog.lightbox .lb-nav{display:flex; gap:8px; flex:0 0 auto;}
 dialog.lightbox button{font-family:var(--mono); font-size:13px; color:var(--text); background:var(--bg2); border:1px solid var(--line); border-radius:8px; padding:8px 12px; cursor:pointer;}
 dialog.lightbox button:hover, dialog.lightbox button:focus-visible{border-color:var(--accent); color:var(--accent); outline:none;}
+
+/* ---- stat strip variant: 3 columns ---- */
+.stats.three{grid-template-columns:1fr 1fr;}
+@media(min-width:720px){ .stats.three{grid-template-columns:repeat(3,1fr);} }
+.prose ol{margin:0 0 20px; padding-left:22px;}
+.prose ol li{color:var(--mute); margin:0 0 11px; font-size:16px; padding-left:4px;}
+.prose ol li::marker{color:var(--accent); font-family:var(--mono);}

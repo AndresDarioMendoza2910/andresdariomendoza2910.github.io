@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing Backend and Web Client for Zoho CRM | Case Study</title>
+<meta name="description" content="A shared serverless API on Zoho Catalyst that powers two pricing widgets inside Zoho CRM and an authenticated standalone pricing calculator. Covers cross-origin security under real platform constraints, a two-function access model and a salary cheat sheet that learns from usage.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://andresdariomendoza2910.github.io/projects/pricing-backend-zoho-catalyst.html">
+<meta property="og:title" content="Pricing Backend and Web Client for Zoho CRM | Case Study">
+<meta property="og:description" content="A shared serverless API on Zoho Catalyst that powers two pricing widgets inside Zoho CRM and an authenticated standalone pricing calculator. Covers cross-origin security under real platform constraints, a two-function access model and a salary cheat sheet that learns from usage.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' fill='%234ad3a8'>&gt;</text></svg>">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html" style="text-decoration:none;">andres<span class="px">.</span>mendoza</a>
+    <div class="links">
+      <a href="../index.html#work">work</a>
+      <a href="../index.html#about">about</a>
+      <a href="../index.html#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="wrap">
+    <a class="back mono" href="../index.html">← back to work</a>
+    <div class="ptag mono">Zoho Catalyst · Serverless · Zoho CRM · API Security</div>
+    <h1>Pricing Backend and Web Client for Zoho CRM</h1>
+    <p class="sub">A serverless API on Zoho Catalyst behind two CRM pricing widgets and an authenticated web calculator, with a deliberately split public/authenticated security model.</p>
+    <div class="stack">
+      <span class="chip">Zoho Catalyst</span><span class="chip">Serverless</span><span class="chip">Node.js 20</span>
+      <span class="chip">Advanced I/O Functions</span><span class="chip">Zoho CRM</span><span class="chip">Zoho Sigma</span>
+      <span class="chip">Data Store</span><span class="chip">ZCQL</span><span class="chip">CORS</span>
+      <span class="chip">API Security</span><span class="chip">REST</span>
+    </div>
+    <p class="note">Role: sole developer (API design, security model, data store, front end, deployment) · Status: deployed to the Catalyst development environment, production promotion pending</p>
+  </div>
+</header>
+
+<section class="sec" style="border-top:none; padding-top:20px;">
+  <div class="wrap">
+    <div class="stats three">
+      <div class="stat"><div class="num" data-count="2" data-suffix="">0</div><div class="lab">Catalyst Advanced I/O functions <span class="dim">(cheatsheet-api, cheatsheet-read)</span></div></div>
+      <div class="stat"><div class="num" data-count="3" data-suffix="">0</div><div class="lab">clients served <span class="dim">(2 Zoho CRM widgets, 1 web client)</span></div></div>
+      <div class="stat"><div class="num" data-count="1" data-suffix="">0</div><div class="lab">Data Store table <span class="dim">(SalaryCheatSheet)</span></div></div>
+      <div class="stat"><div class="num">Node 20</div><div class="lab">runtime</div></div>
+      <div class="stat"><div class="num" data-count="2" data-suffix="">0</div><div class="lab">environments <span class="dim">(Development, Production)</span></div></div>
+      <div class="stat"><div class="num mono" style="font-size:30px;">solo</div><div class="lab">designed, built &amp; deployed end to end</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW + PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <div class="prose">
+      <p>This project is the <strong>shared back end</strong> behind two pricing widgets that live inside Zoho CRM, plus a <strong>standalone web client</strong> that works as a pricing simulator outside the CRM.</p>
+      <p>The API stores a <strong>"salary cheat sheet"</strong>: typical salary ranges per role and seniority level, with a usage counter that makes the most commonly priced roles float to the top. The widgets read the sheet to suggest salary ranges and write back to it whenever a price is saved, so the data improves with use.</p>
+      <p>The constraints:</p>
+      <ul>
+        <li>Two separate CRM widgets needed <strong>one source of truth</strong> for role and salary data.</li>
+        <li>The widgets run on <strong>Zoho Sigma, a different origin from Catalyst</strong>, and carry no Catalyst session. That rules out normal Catalyst authentication for them.</li>
+        <li>A new standalone web client needed a <strong>real authentication wall</strong>, without breaking the widgets that depend on the open endpoint.</li>
+        <li><strong>Writes needed protection</strong> even though the calling pages are public and cross-origin.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The solution</h2>
+    <div class="prose">
+      <p>Split the API into <strong>two functions with different security postures</strong>, so each client gets the strongest protection its platform constraints allow.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Function</th><th>Access</th><th>Used by</th><th>Routes</th></tr></thead>
+        <tbody>
+          <tr><td><code>cheatsheet-api</code></td><td>Public (open), hardened at the app level</td><td>Sigma-hosted CRM widgets (cross-origin)</td><td><code>GET /</code>, <code>POST /upsert</code>, <code>POST /increment</code> (legacy)</td></tr>
+          <tr><td><code>cheatsheet-read</code></td><td>Authenticated by Catalyst Security Rule, read-only</td><td>Catalyst-hosted web client (same-origin)</td><td><code>GET /</code> only</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="diagram" role="img" aria-label="Architecture diagram: inside Zoho CRM, the Sigma-hosted pricing wizard widget and pricing button widget both call the public cheatsheet-api function with GET / and POST /upsert. The public function is protected by a CORS allowlist and a body-key gate on writes. Inside the Catalyst project, the web client with a Hosted Login session calls the authenticated, read-only cheatsheet-read function. Both functions read from the SalaryCheatSheet Data Store table.">
+<pre class="mermaid">
+flowchart LR
+    subgraph CRM["Zoho CRM"]
+        W1["Pricing wizard widget<br/>(Sigma-hosted)"]
+        W2["Pricing button widget<br/>(Sigma-hosted)"]
+    end
+    subgraph Catalyst["Zoho Catalyst project"]
+        API["cheatsheet-api<br/>PUBLIC: CORS allowlist + body-key gate on writes"]
+        READ["cheatsheet-read<br/>AUTH REQUIRED: read-only"]
+        DS[("Data Store<br/>SalaryCheatSheet")]
+        WC["Web client<br/>(Hosted Login session)"]
+    end
+    W1 -->|"GET / and POST /upsert"| API
+    W2 -->|"GET / and POST /upsert"| API
+    WC -->|"GET /server/cheatsheet-read"| READ
+    API --> DS
+    READ --> DS
+</pre>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <div class="prose">
+      <h3 style="margin-top:0;">Cheat sheet API</h3>
+      <ul>
+        <li><code>GET /</code> returns all rows ordered by <code>Counter</code> descending, so the most frequently priced roles come first.</li>
+        <li><code>POST /upsert</code> matches on Role plus Seniority. If a row exists, it increments <code>Counter</code>, refreshes <code>UpdatedDate</code> and updates salary values if sent. If not, it inserts a new row with <code>Counter = 1</code>. This is what the widgets call on save, so <strong>new roles appear and popular roles rank higher automatically</strong>.</li>
+        <li><code>POST /increment</code> is a legacy route that bumps a counter by row ID. It is kept for backward compatibility and reads the current value server-side rather than trusting the client.</li>
+      </ul>
+
+      <h3>Data model</h3>
+      <p><code>SalaryCheatSheet</code>: <code>Role</code>, <code>Country</code>, <code>Seniority</code>, <code>MinSalary</code> (int), <code>MaxSalary</code> (int), <code>Counter</code> (int), <code>UpdatedDate</code> (date, <code>YYYY-MM-DD</code>), <code>ROWID</code>.</p>
+
+      <h3>Web client (manual mode)</h3>
+      <p>A standalone, Catalyst-hosted copy of the pricing simulator with no CRM integration. It is a <strong>read-only calculator</strong>:</p>
+      <ol>
+        <li><strong>Seniority:</strong> pick one of five levels (Entry, Junior, Mid-level, Senior, Team Lead), which sets salary defaults and filters the cheat sheet.</li>
+        <li><strong>Role lookup:</strong> the top five roles for that level appear as quick-pick pills, with a search box for all roles. Selecting a role shows its typical salary range with an "Apply to sliders" button.</li>
+        <li><strong>Salary and margin:</strong> sliders for the salary low end, high end and target margin. Client prices update live for both ends of the range, using a cost multiplier that covers employer costs, a minimum margin floor and prices rounded up to a fixed step.</li>
+        <li><strong>Data quality rule:</strong> a role's range is only offered when it has been recorded at least 3 times and updated within the last 6 months. Otherwise the UI shows "Not enough data for this role, enter manually".</li>
+      </ol>
+
+      <h3>Auth guard on the client</h3>
+      <p>The client checks the Catalyst Hosted Login session with the Web SDK and redirects anonymous visitors to the login page. This is a <strong>UX layer only</strong>. The real boundary is the server-side Security Rule on <code>cheatsheet-read</code>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINEERING HIGHLIGHTS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Engineering highlights</h2>
+    <div class="hl-grid">
+      <div class="hl reveal"><div class="idx">01</div><h3>Two-function security split</h3><p>Instead of forcing one security model on every client, the API is divided into a public function for cross-origin widgets and an authenticated read-only function for same-origin use. Neither choice weakens the other.</p></div>
+      <div class="hl reveal"><div class="idx">02</div><h3>Designing around a platform constraint</h3><p>Catalyst's gateway answers CORS preflight (<code>OPTIONS</code>) requests itself, without CORS headers. So the write key travels in the body and writes go as <code>text/plain</code>, keeping the request "simple" and skipping the preflight.</p><a class="link" href="#code-gate">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">03</div><h3>Honest threat modelling</h3><p>The shared key lives in widget HTML, so it is visible in DevTools. The docs state plainly that this is obscurity, not authentication: it deters drive-by writes, and the body-key check is the real server-side gate.</p></div>
+      <div class="hl reveal"><div class="idx">04</div><h3>Fail closed</h3><p>If the <code>WIDGET_KEY</code> environment variable is missing, write routes return a clear <code>500</code> instead of a <code>401</code> that would look like a client-side key mismatch.</p><a class="link" href="#code-gate">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">05</div><h3>No secrets in source</h3><p>The server key is read from a per-environment variable. The published widget source keeps a placeholder, and the README documents a full key rotation procedure.</p></div>
+      <div class="hl reveal"><div class="idx">06</div><h3>Strict CORS allowlist</h3><p>Instead of <code>*</code>, the function echoes the origin only for Zoho domains, matching on exact host or suffix, and logs rejected origins to make misconfiguration easy to diagnose.</p><a class="link" href="#code-cors">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">07</div><h3>Injection-safe queries</h3><p>Single quotes in ZCQL string values are escaped, and row IDs are validated as numeric before use.</p><a class="link" href="#code-upsert">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">08</div><h3>Server-side truth</h3><p>Counters are read and incremented on the server, never taken from the client.</p></div>
+      <div class="hl reveal"><div class="idx">09</div><h3>Read-only by construction</h3><p><code>cheatsheet-read</code> has no write routes at all, and any other request returns <code>404</code>, so even a misconfigured Security Rule cannot expose writes through it.</p><a class="link" href="#code-read">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">10</div><h3>Documented operational gotchas</h3><p>Security Rules are console-managed and per environment, new functions default to optional auth, the hosted client name is locked to its first registration, and Data Store rows don't travel with a production promotion.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CODE EXCERPTS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Code excerpts</h2>
+    <div class="prose">
+      <p>Short excerpts with the surrounding handlers omitted. The full source is not published.</p>
+    </div>
+
+    <pre class="code" id="code-cors" tabindex="0" aria-label="JavaScript code: origin allowlist">const ALLOWED_ORIGIN_SUFFIXES = [
+  '.zappsusercontent.com',   <span class="c">// Sigma widget hosting</span>
+  '.zohostatic.com',
+  '.zoho.com', '.zoho.eu', '.zoho.in', '.zoho.com.au', '.zoho.jp', '.zohocloud.com',
+];
+
+function originAllowed(origin) {
+  if (!origin) return false;
+  try {
+    const host = new URL(origin).hostname;
+    return ALLOWED_ORIGIN_SUFFIXES.some(function (s) {
+      return host === s.slice(1) || host.endsWith(s);
+    });
+  } catch (e) { return false; }
+}</pre>
+    <p class="code-cap">Origin allowlist · strict CORS instead of <code>*</code>.</p>
+
+    <pre class="code" id="code-gate" tabindex="0" aria-label="JavaScript code: fail-closed write gate"><span class="c">// Missing server config surfaces as a clear 500, not a misleading 401</span>
+if (method === 'POST' &amp;&amp; !WIDGET_KEY) {
+  console.error('[cheatsheet-api] WIDGET_KEY env var is not set, rejecting writes');
+  res.writeHead(500);
+  res.end(JSON.stringify({ success: false, error: 'Server not configured' }));
+  return;
+}
+
+<span class="c">// ...inside the write route</span>
+if (body.key !== WIDGET_KEY) {
+  res.writeHead(401);
+  res.end(JSON.stringify({ success: false, error: 'Unauthorized' }));
+  return;
+}</pre>
+    <p class="code-cap">Fail-closed write gate · the key travels in the body, not a header.</p>
+
+    <pre class="code" id="code-upsert" tabindex="0" aria-label="JavaScript code: upsert core">const existing = await zcql.executeZCQLQuery(
+  "SELECT ROWID, Counter FROM SalaryCheatSheet " +
+  "WHERE Role = '" + esc(role) + "' AND Seniority = '" + esc(seniority) + "' LIMIT 1"
+);
+const found = existing &amp;&amp; existing[0] &amp;&amp; (existing[0].SalaryCheatSheet || existing[0]);
+
+if (found) {
+  const newCount = (parseInt(found.Counter) || 0) + 1;
+  await table.updateRow({ ROWID: String(found.ROWID), Counter: newCount, UpdatedDate: today() });
+} else {
+  await table.insertRow({ Role: role, Seniority: seniority, Counter: 1, UpdatedDate: today() });
+}</pre>
+    <p class="code-cap">Upsert core · create if missing, otherwise bump the counter server-side.</p>
+
+    <pre class="code" id="code-read" tabindex="0" aria-label="JavaScript code: read-only sibling function">if (method === 'GET' &amp;&amp; (url === '/' || url === '')) {
+  const rows = await zcql.executeZCQLQuery(
+    'SELECT ROWID, Role, Country, Seniority, MinSalary, MaxSalary, Counter, UpdatedDate ' +
+    'FROM SalaryCheatSheet ORDER BY Counter DESC'
+  );
+  res.writeHead(200);
+  res.end(JSON.stringify({ success: true, data: rows }));
+  return;
+}
+<span class="c">// anything else, including any write attempt, is a 404</span>
+res.writeHead(404);
+res.end(JSON.stringify({ success: false, error: 'Not found' }));</pre>
+    <p class="code-cap">Read-only sibling · the entire route logic of <code>cheatsheet-read</code>.</p>
+
+    <pre class="code" tabindex="0" aria-label="JavaScript code: data sufficiency rule">function csSufficient(row) {
+  if (!row || parseInt(row.Counter) &lt; 3) return false;
+  var sixMonthsAgo = new Date();
+  sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  return new Date(row.UpdatedDate) &gt;= sixMonthsAgo;
+}</pre>
+    <p class="code-cap">Data sufficiency rule in the client · at least 3 records, updated within 6 months.</p>
+  </div>
+</section>
+
+<!-- DEPLOYMENT -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Deployment &amp; operations</h2>
+    <div class="prose">
+      <ul>
+        <li>Catalyst project bound through <code>.catalystrc</code> with <strong>Development and Production</strong> environments.</li>
+        <li><code>catalyst.json</code> declares the client source and both function targets, so <strong>one <code>catalyst deploy</code> ships the client and functions together</strong>. Partial deploys are supported with <code>--only functions</code>, <code>--only functions:cheatsheet-read</code> and <code>--only client</code>.</li>
+        <li>The <code>cheatsheet-read</code> Security Rule (<code>{ "methods": ["GET"], "authentication": "required" }</code>) is console-managed and must be set once per environment after the first deploy.</li>
+        <li>Promotion to production carries code and metadata but <strong>not Data Store rows</strong>, so data is migrated with <code>catalyst datastore:export</code> and <code>:import --production</code>.</li>
+        <li>Deploy order matters: roll out the function and the new widget builds together, then hard-refresh the CRM.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Status &amp; next steps</h2>
+    <div class="prose">
+      <ul>
+        <li>Currently deployed to the <strong>development</strong> environment only.</li>
+        <li>Production promotion requires setting the Security Rule on <code>cheatsheet-read</code>, setting <code>WIDGET_KEY</code> for the production environment and migrating Data Store rows.</li>
+        <li>Possible future work: <strong>per-tier margin floors</strong> (the code keeps a separate entry per tier for this purpose), and <strong>same-origin hosting of the widgets</strong> to replace the shared-key model with real per-user authentication.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Walk through it</h2>
+    <div class="cta-band">
+      <div class="prose" style="max-width:640px;">
+        <p style="margin:0;">Source code is not published. I'm happy to walk through the architecture in an interview.</p>
+      </div>
+      <a class="btn primary" href="#contact">Request a walkthrough</a>
+    </div>
+    <p class="note" style="margin-top:30px;">Related Zoho project: <a href="employee-portal-zoho-creator.html">Employee Portal for Zoho Creator</a>, a time, attendance and HR portal built end to end on Zoho Creator.</p>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div class="mono" style="color:var(--text); font-size:15px; margin-bottom:6px;">Let's build something.</div>
+      <div class="mute" style="font-size:14px;">Panama City, Panama</div>
+    </div>
+    <div class="links">
+      <a href="mailto:andresmendozaerna@gmail.com">email</a>
+      <a href="https://github.com/AndresDarioMendoza2910" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/andr%C3%A9s-dar%C3%ADo-mendoza-bernal-420b4b1bb/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs';
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: "'JetBrains Mono', monospace",
+  themeVariables: {
+    darkMode: true,
+    background: '#111823',
+    primaryColor: '#161e2b',
+    primaryTextColor: '#e6edf3',
+    primaryBorderColor: '#4ad3a8',
+    secondaryColor: '#111823',
+    tertiaryColor: '#0d1117',
+    lineColor: '#9aa7b4',
+    textColor: '#e6edf3',
+    clusterBkg: '#0d1117',
+    clusterBorder: '#232d3b',
+    edgeLabelBackground: '#111823',
+    fontSize: '13px'
+  }
+});
+await mermaid.run({ querySelector: 'pre.mermaid' });
+</script>
+<script>
+// scroll reveal + count-up
+const seen=new WeakSet();
+function countUp(el){
+  const target=parseFloat(el.dataset.count), suf=el.dataset.suffix||"";
+  const dur=1100, t0=performance.now();
+  function tick(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e)+suf;
+    if(p<1) requestAnimationFrame(tick); else el.textContent=target+suf;
+  }
+  requestAnimationFrame(tick);
+}
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.stat [data-count]').forEach(c=>{
+  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting&&!seen.has(c)){seen.add(c);countUp(c);o.unobserve(c);}})},{threshold:.5});
+  o.observe(c);
+});
+</script>
+</body>
+</html>
