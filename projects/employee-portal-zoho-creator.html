@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Employee Portal for Zoho Creator | Case Study</title>
+<meta name="description" content="A time, attendance and HR self-service portal built entirely on Zoho Creator for organizations that cannot use Zoho People or a dedicated timesheet product. 28 forms, 47 Deluge functions, scheduled jobs, approvals and live CRM and Desk integrations.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://andresdariomendoza2910.github.io/projects/employee-portal-zoho-creator.html">
+<meta property="og:image" content="https://andresdariomendoza2910.github.io/assets/img/employee-portal/employee-dashboard.png">
+<meta property="og:image:alt" content="Employee dashboard with clock-in, break timer and location detection">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="Employee Portal for Zoho Creator | Case Study">
+<meta property="og:description" content="A time, attendance and HR self-service portal built entirely on Zoho Creator for organizations that cannot use Zoho People or a dedicated timesheet product. 28 forms, 47 Deluge functions, scheduled jobs, approvals and live CRM and Desk integrations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='monospace' fill='%234ad3a8'>&gt;</text></svg>">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="../index.html" style="text-decoration:none;">andres<span class="px">.</span>mendoza</a>
+    <div class="links">
+      <a href="../index.html#work">work</a>
+      <a href="../index.html#about">about</a>
+      <a href="../index.html#contact">contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="cs-hero">
+  <div class="wrap">
+    <a class="back mono" href="../index.html">← back to work</a>
+    <div class="ptag mono">Zoho Creator · Deluge · CRM · Desk</div>
+    <h1>Employee Portal for Zoho Creator</h1>
+    <p class="sub">A complete time, attendance and HR self-service portal built on a low-code platform. Designed and built end to end by one developer, and live in production.</p>
+    <div class="stack">
+      <span class="chip">Zoho Creator</span><span class="chip">Deluge</span><span class="chip">Low-code</span>
+      <span class="chip">HR Tech</span><span class="chip">Time and Attendance</span><span class="chip">Zoho CRM</span>
+      <span class="chip">Zoho Desk</span><span class="chip">Zoho Catalyst</span><span class="chip">JavaScript</span>
+      <span class="chip">HTML/CSS</span><span class="chip">Automation</span><span class="chip">Approvals</span>
+    </div>
+    <p class="note">Role: sole designer and developer (data model, Deluge back end, UI, automation, integrations) · Status: live in production</p>
+    <figure class="hero-shot" style="margin-left:0; margin-right:0;">
+      <button class="shot" type="button" data-shot="0" aria-label="Enlarge screenshot: Employee dashboard with clock-in, break timer and location detection">
+        <img src="../assets/img/employee-portal/employee-dashboard.png" width="1869" height="836" alt="Employee dashboard showing work and break timers, a Clock In button, schedule, status, location with a Remote badge, vacation balance and ticket and feedback buttons">
+      </button>
+      <figcaption>Employee dashboard with clock-in, break timer and location detection. All screenshots are from the live app, with names, photos, emails, client accounts and IPs blurred.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section class="sec" style="border-top:none; padding-top:20px;">
+  <div class="wrap">
+    <div class="stats wide">
+      <div class="stat"><div class="num" data-count="28" data-suffix="">0</div><div class="lab">forms</div></div>
+      <div class="stat"><div class="num" data-count="47" data-suffix="">0</div><div class="lab">Deluge functions</div></div>
+      <div class="stat"><div class="num">~1,800</div><div class="lab">lines of server-side Deluge</div></div>
+      <div class="stat"><div class="num" data-count="6" data-suffix="">0</div><div class="lab">scheduled jobs</div></div>
+      <div class="stat"><div class="num" data-count="3" data-suffix="">0</div><div class="lab">approval workflows <span class="dim">(leave, remote attendance, overtime)</span></div></div>
+      <div class="stat"><div class="num" data-count="6" data-suffix="">0</div><div class="lab">permission profiles</div></div>
+      <div class="stat"><div class="num" data-count="4" data-suffix="">0</div><div class="lab">integrations <span class="dim">(CRM, Desk, Catalyst, IP geolocation)</span></div></div>
+      <div class="stat"><div class="num mono" style="font-size:30px;">solo</div><div class="lab">designed, built &amp; shipped end to end</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW + PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The problem</h2>
+    <div class="prose">
+      <p>This is a complete time, attendance and HR self-service portal built as a <strong>Zoho Creator</strong> application. It is meant for organizations that, for whatever reason, <strong>cannot use Zoho People or a dedicated timesheet product</strong> but do have access to Creator.</p>
+      <p>Common reasons an organization lands in this situation:</p>
+      <ul>
+        <li>Zoho People or a third-party timesheet SaaS is not in the budget, but <strong>Creator already is</strong>, for example through Zoho One or an existing Creator plan.</li>
+        <li>The workforce mixes <strong>payroll staff, contractors and staff placed with client accounts</strong>, and off-the-shelf tools do not model that well.</li>
+        <li>Attendance rules, leave accrual and approval chains are <strong>specific to a country or a client contract</strong> and need custom logic.</li>
+        <li>The data has to live next to other Creator apps and <strong>sync with Zoho CRM and Zoho Desk</strong>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="sec">
+  <div class="wrap">
+    <h2>The solution</h2>
+    <div class="prose">
+      <p>A single portal that covers the <strong>whole employee lifecycle</strong>: clock in and out, breaks, leave, overtime, remote work approval, help desk tickets, feedback, scheduling, transfers and onboarding.</p>
+      <p>Daily jobs classify attendance, accrue leave and report on exceptions automatically. Every check-in, break and check-out is <strong>mirrored to Zoho CRM</strong>. Everything runs on the low-code platform: forms, reports, pages, Deluge scripts, schedules, approvals and a blueprint, plus custom HTML and CSS dashboards inside Creator pages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Features</h2>
+    <div class="cols3">
+      <div class="panel prose reveal">
+        <div class="btitle">For employees</div>
+        <ul>
+          <li><strong>Clock in and out</strong> from a dashboard widget, with live status (working, on break, checked out).</li>
+          <li><strong>Breaks and lunch</strong> (15 min, 30 min, 1 hour lunch), with automatic break-out when a shift is closed.</li>
+          <li><strong>On-site vs remote detection:</strong> the check-in IP is compared to an office allow-list. Remote check-ins create a request a manager approves.</li>
+          <li><strong>Late reasons</strong> prompted when arriving after shift start.</li>
+          <li><strong>Overtime requests</strong> linked to a specific timesheet.</li>
+          <li><strong>Leave requests</strong> (PTO, sick days) with day counting that skips weekends and holidays, and live balances.</li>
+          <li><strong>Help desk tickets</strong> sent straight into Zoho Desk.</li>
+          <li><strong>Feedback</strong> form, announcements and a company calendar.</li>
+          <li><strong>Personal dashboard:</strong> hours this week, attendance score, days present and absent, days since hire, shift schedule.</li>
+        </ul>
+      </div>
+      <div class="panel prose reveal">
+        <div class="btitle">For managers &amp; admins</div>
+        <ul>
+          <li><strong>Admin dashboard</strong> with attendance status counts across the company.</li>
+          <li><strong>Approval workflows</strong> for leave, remote attendance and overtime, with templated emails.</li>
+          <li><strong>Shift management:</strong> define shifts once, assign them, and scheduled hours are calculated automatically.</li>
+          <li><strong>Employee transfers</strong> between client accounts, shifts and managers, with an audit record.</li>
+          <li><strong>Onboarding blueprint</strong> that holds new records until hire date and shift data are complete.</li>
+          <li><strong>Workday calendar</strong> with holidays and company days off.</li>
+          <li><strong>Per-account and per-region reports:</strong> a client sees only the staff placed with them, split by country.</li>
+          <li><strong>Portal invitations</strong> in one click.</li>
+        </ul>
+      </div>
+      <div class="panel prose reveal">
+        <div class="btitle">Automation</div>
+        <ul>
+          <li><strong>Daily attendance status:</strong> after each shift end, classifies the day as Present, Undertime, Absent, No Check-Out or On Leave.</li>
+          <li><strong>Daily leave accrual:</strong> PTO and sick-day balances, idempotent per date.</li>
+          <li><strong>No time-in report:</strong> emails admins who never clocked in.</li>
+          <li><strong>Weekly attendance report:</strong> an HTML summary table of each employee's week.</li>
+          <li><strong>Workversary reminder</strong> to the HR team.</li>
+          <li><strong>Stale shift expiry:</strong> closes shifts left open past scheduled end plus a grace period.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="prose" style="margin-top:40px;">
+      <h3>Integrations</h3>
+      <ul>
+        <li><strong>Zoho CRM:</strong> every check-in, break and check-out is mirrored to a CRM <code>Attendances</code> module, linked to a Contact (management) or Candidate (staff) record.</li>
+        <li><strong>Zoho Desk:</strong> tickets created in the portal are pushed to Desk and their status is read back.</li>
+        <li><strong>Zoho Catalyst:</strong> the "Submit a Ticket" page embeds a Catalyst-hosted form, prefilled with the signed-in employee's name and email.</li>
+        <li><strong>Custom JS widget API:</strong> the <code>Widget*</code> Deluge functions back a JavaScript time-clock widget embedded in the dashboard.</li>
+        <li><strong>IP geolocation</strong> lookup for remote check-ins.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNICAL HIGHLIGHTS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Technical highlights</h2>
+    <div class="hl-grid">
+      <div class="hl reveal"><div class="idx">01</div><h3>Deluge at scale</h3><p>About 1,800 lines of server-side Deluge across 47 functions, organized into namespaces: <code>PTO</code>, <code>calendar</code>, <code>shift</code>, <code>tickets</code>, <code>tools</code>.</p></div>
+      <div class="hl reveal"><div class="idx">02</div><h3>A small JSON-style API inside Creator</h3><p>The <code>Widget*</code> functions return maps with a crash-safe default status (<code>"error"</code>), so a custom JavaScript widget can drive the whole time clock.</p><a class="link" href="#code-pattern">see the pattern →</a></div>
+      <div class="hl reveal"><div class="idx">03</div><h3>One source of truth for the calendar</h3><p><code>calendar.getDayClassification</code> decides whether a date is a workday, weekend, holiday, company day off or approved leave for an employee. Accrual, absence marking and reports all reuse it.</p></div>
+      <div class="hl reveal"><div class="idx">04</div><h3>Result maps instead of exceptions</h3><p><code>PTO.applyLeaveUsage</code> validates the employee, applies policy rounding, checks the balance for the leave type and returns <code>{success, message}</code> so the workflow can show a clear message.</p></div>
+      <div class="hl reveal"><div class="idx">05</div><h3>Idempotent schedules</h3><p>The leave accrual job records the last processed date (<code>Last_Accrual_Date</code>), so a re-run never double counts.</p></div>
+      <div class="hl reveal"><div class="idx">06</div><h3>Guarded state changes</h3><p><code>WidgetGoOnBreak</code> rejects invalid break types and double breaks, writes a subform row and returns server timestamps so the browser timer stays in sync.</p><a class="link" href="#code-pattern">see the pattern →</a></div>
+      <div class="hl reveal"><div class="idx">07</div><h3>Self-healing data</h3><p><code>WidgetExpireStaleShifts</code> closes shifts still open 2 hours past scheduled end (or from a previous day), ends open breaks and marks the timesheet "No Check-Out" so reports and payroll stay accurate.</p></div>
+      <div class="hl reveal"><div class="idx">08</div><h3>On-site vs remote branching</h3><p><code>WidgetCheckIn</code> blocks double check-ins, geolocates the IP, compares it to the allow-list, then either creates the timesheet or opens a prefilled Remote Attendance form for approval.</p></div>
+      <div class="hl reveal"><div class="idx">09</div><h3>Logging that can't break the caller</h3><p><code>tools.logInfo / logWarn / logError</code> write level, source, status, message, user and record ID to an <code>App_Logs</code> form. Logging failures are swallowed on purpose.</p><a class="link" href="#code-applog">see the code →</a></div>
+      <div class="hl reveal"><div class="idx">10</div><h3>Custom UI inside Creator pages</h3><p>Dashboards are hand-written HTML and CSS rendered through ZML, with design tokens as CSS variables, instead of the default page builder widgets.</p></div>
+      <div class="hl reveal"><div class="idx">11</div><h3>Role-based access</h3><p>Separate permission profiles for Administrator, Manager, Team Supervisor, Employee, Client and Read-only users.</p></div>
+      <div class="hl reveal"><div class="idx">12</div><h3>Localized HR fields</h3><p>The employee record supports country-specific data such as civil status, nationality, residence type, dependents and local bank accounts.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Architecture</h2>
+    <div class="prose">
+      <h3 style="margin-top:0;">At a glance</h3>
+    </div>
+    <div class="diagram" role="img" aria-label="Architecture diagram: a JavaScript time-clock widget and the Creator pages call 47 Deluge functions. Forms trigger workflows, schedules, approvals and a blueprint, which call the functions. The functions write attendances, contacts and candidates to Zoho CRM and tickets to Zoho Desk. Pages embed a Catalyst-hosted ticket form in an iframe, and workflows send HTML emails.">
+<pre class="mermaid">
+flowchart LR
+    subgraph Creator["Zoho Creator app"]
+        Pages["Pages<br/>(ZML + HTML/CSS dashboards)"]
+        Forms["28 forms"]
+        Reports["Reports and calendars"]
+        Fn["47 Deluge functions"]
+        WF["Workflows, schedules,<br/>approvals, blueprint"]
+    end
+    Widget["JS time-clock widget"] -->|calls Widget* functions| Fn
+    Pages --> Fn
+    Pages -->|iframe| Catalyst["Catalyst-hosted ticket form"]
+    Forms --> WF --> Fn
+    Fn -->|Attendances, Contacts, Candidates| CRM[(Zoho CRM)]
+    Fn -->|tickets| Desk[(Zoho Desk)]
+    WF -->|HTML emails| Mail[[Email]]
+</pre>
+    </div>
+
+    <div class="prose">
+      <h3>Data model</h3>
+    </div>
+    <div class="diagram" role="img" aria-label="Data model: Employees belong to Accounts, Shifts, Teams and Managers. Each employee has Timesheets, which contain Breaks and Overtime Applications. Employees also have Remote Attendance requests, Leave Requests, Late Reasons, Employee Transfers and Submitted Tickets. Ticket Departments group Ticket Categories, which classify tickets. The Workday Calendar syncs to Calendar Events.">
+<pre class="mermaid">
+erDiagram
+    Accounts ||--o{ Employees : "assigned to"
+    Shifts ||--o{ Employees : "works"
+    Teams ||--o{ Employees : "member of"
+    Manager_Details ||--o{ Employees : "manages"
+    Employees ||--o{ Timesheets : "clocks"
+    Timesheets ||--o{ Breaks : "contains"
+    Timesheets ||--o{ Overtime_Applications : "extends"
+    Employees ||--o{ Remote_Attendance : "requests"
+    Employees ||--o{ Leave_Requests : "requests"
+    Employees ||--o{ Late_Reason : "explains"
+    Employees ||--o{ Employee_Transfers : "moved by"
+    Employees ||--o{ Submit_Ticket : "opens"
+    Ticket_Departments ||--o{ Ticket_Categories : "groups"
+    Ticket_Categories ||--o{ Submit_Ticket : "classifies"
+    Workday_Calendar ||--o{ Calendar_Events : "syncs to"
+</pre>
+    </div>
+    <p class="note">Supporting forms: IP_Allowed_List (office IPs), Announcements, Alert, Feedback_Suggestions, Portal_Invite, Attendance_Approval, App_Logs, Stateless_Timesheets (filter UI), work_timing, Clients.</p>
+
+    <div class="prose">
+      <h3>Check-in flow</h3>
+    </div>
+    <div class="diagram" role="img" aria-label="Check-in sequence: the employee clocks in and the widget calls WidgetIpCheck. If the IP is in the allow-list, Creator creates an on-site timesheet. Otherwise the employee gets a prefilled Remote Attendance form and submits it for approval. Creator then creates or updates the CRM Attendances record. Breaks and resumes call WidgetGoOnBreak and WidgetResume and update CRM. Clocking out calls WidgetCheckOut, which closes open breaks, computes worked time and updates CRM.">
+<pre class="mermaid">
+sequenceDiagram
+    participant E as Employee
+    participant W as Widget / Dashboard
+    participant C as Creator (Deluge)
+    participant CRM as Zoho CRM
+    E->>W: Clock in
+    W->>C: WidgetIpCheck()
+    alt IP is in IP_Allowed_List
+        C->>C: Create Timesheet (on-site)
+    else Unknown IP
+        C-->>E: Open prefilled Remote_Attendance form
+        E->>C: Submit remote check-in (pending approval)
+    end
+    C->>CRM: Create or update Attendances record
+    E->>W: Break / Resume
+    W->>C: WidgetGoOnBreak() / WidgetResume()
+    C->>CRM: UpdateCRMAttendanceBreakOut()
+    E->>W: Clock out
+    W->>C: WidgetCheckOut()
+    C->>C: Close open breaks, compute worked time
+    C->>CRM: Update Attendances record
+</pre>
+    </div>
+
+    <div class="prose">
+      <h3>Daily jobs</h3>
+      <ul>
+        <li><strong>Stale shift expiry</strong> (<code>WidgetExpireStaleShifts</code>): any timesheet still open 2 hours past its scheduled end, or from a previous day, is closed as <code>No Check-Out</code> and its open breaks are ended.</li>
+        <li><strong>Attendance status</strong> (<code>dailyAttendanceStatusUpdate</code>): runs per employee after their shift end. Uses <code>calendar.getDayClassification</code> to skip weekends, holidays, company days off and approved leave, then sets the day to Present, Undertime or Absent.</li>
+        <li><strong>Leave accrual</strong> (<code>PTO.dailyLeaveAccrual</code>): adds the per-day PTO and sick-day rate for the employee's location. Guarded by <code>Last_Accrual_Date</code> so it runs at most once per day.</li>
+      </ul>
+
+      <h3>Approvals</h3>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Approval</th><th>Form</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Leave</td><td><code>Leave_Requests</code></td><td>Two-level approval. The balance is checked and reserved on submit by <code>PTO.applyLeaveUsage</code>.</td></tr>
+          <tr><td>Remote attendance</td><td><code>Remote_Attendance</code></td><td>On approve, creates the timesheet and the CRM attendance record.</td></tr>
+          <tr><td>Overtime</td><td><code>Overtime_Applications</code></td><td>On approve, writes overtime minutes back to the timesheet and CRM.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="prose">
+      <p>Each approval sends a templated HTML email to the employee on approve or reject.</p>
+
+      <h3>Onboarding blueprint</h3>
+      <p><code>Finish_Employee_Record</code> holds new employee records whose hire date or shift data is missing, and moves them forward once the record is complete, so incomplete employees never enter the daily jobs.</p>
+
+      <h3>Permission profiles</h3>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl">
+        <thead><tr><th>Profile</th><th>Access</th></tr></thead>
+        <tbody>
+          <tr><td>Administrator</td><td>Everything</td></tr>
+          <tr><td>Manager</td><td>Team records, approvals, reports</td></tr>
+          <tr><td>Team Supervisor</td><td>Team attendance and approvals, limited admin</td></tr>
+          <tr><td>Employee</td><td>Own timesheets, leave, tickets, dashboard</td></tr>
+          <tr><td>Client</td><td>Read-only view of staff placed on their account</td></tr>
+          <tr><td>Read</td><td>Read-only across components</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CODE SAMPLES -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Code samples</h2>
+    <div class="prose">
+      <p>Representative Deluge excerpts. The full app is not published; these show how the code is written.</p>
+    </div>
+
+    <pre class="code" id="code-applog" tabindex="0" aria-label="Deluge code: tools.appLog"><span class="c">// Structured in-app logging. Writes level, source, status, message and
+// user to an App_Logs form, giving admins an audit trail inside Creator.
+// Logging failures are swallowed so they can never break the caller.</span>
+
+void tools.appLog(string level, string source, string status, string message, string recordId)
+{
+	try
+	{
+		insert into App_Logs
+		[
+			Level=level
+			Source=source
+			Status=status
+			Message=message
+			User_Email=zoho.loginuserid
+			Record_Id=recordId
+			Logged_At=zoho.currenttime
+			Added_User=zoho.loginuser
+		]
+	}	catch (e)
+	{
+		<span class="c">// swallow errors: logging must never break the caller</span>
+	}
+}</pre>
+    <p class="code-cap"><code>tools.appLog</code> · structured in-app logging that can never break the caller.</p>
+
+    <pre class="code" tabindex="0" aria-label="Deluge code: logInfo and logError wrappers">void tools.logInfo(string source, string status, string message)
+{
+	thisapp.tools.appLog("INFO",source,status,message,"");
+}
+
+void tools.logError(string source, string message)
+{
+	thisapp.tools.appLog("ERROR",source,"error",message,"");
+}</pre>
+    <p class="code-cap"><code>logInfo</code> / <code>logError</code> · thin wrappers so every call site logs in one line.</p>
+
+    <pre class="code" id="code-pattern" tabindex="0" aria-label="Deluge code: crash-safe response pattern">response = Map();
+response.put("status","error");   <span class="c">// crash-safe default</span>
+try
+{
+	<span class="c">// ... guarded business logic, early returns with specific statuses ...</span>
+}
+catch (e)
+{
+	thisapp.tools.logError("WidgetGoOnBreak", "" + e);
+	response.put("status","error");
+	response.put("error","" + e);
+}
+return response;</pre>
+    <p class="code-cap">Every <code>Widget*</code> function starts with a crash-safe default response and ends in a <code>catch</code> that logs and returns a status map.</p>
+  </div>
+</section>
+
+<!-- SCREENSHOTS -->
+<section class="sec">
+  <div class="wrap">
+    <h2>Screenshots</h2>
+    <div class="gallery">
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="1" aria-label="Enlarge screenshot: Admin dashboard with attendance score and calendar"><img src="../assets/img/employee-portal/admin-dashboard.png" width="1872" height="839" loading="lazy" alt="Admin dashboard with a greeting card, quick action buttons, a monthly attendance score gauge reading 57.46 percent and a company calendar"></button>
+        <figcaption>Admin dashboard with attendance score and calendar</figcaption>
+      </figure>
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="2" aria-label="Enlarge screenshot: Live timesheets grouped by client account"><img src="../assets/img/employee-portal/timesheets-and-breaks.png" width="1871" height="840" loading="lazy" alt="Timesheets and Breaks report grouped by date with status, employee, actual time in, break duration and scheduled time columns"></button>
+        <figcaption>Live timesheets grouped by client account</figcaption>
+      </figure>
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="3" aria-label="Enlarge screenshot: Employee directory with shift and status"><img src="../assets/img/employee-portal/employees.png" width="1870" height="837" loading="lazy" alt="Employee directory listing people with role, shift hours and Active status, plus a search box"></button>
+        <figcaption>Employee directory with shift and status</figcaption>
+      </figure>
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="4" aria-label="Enlarge screenshot: Monthly attendance score and calendar"><img src="../assets/img/employee-portal/attendance.png" width="1870" height="839" loading="lazy" alt="Attendance page with present and absent counters, a score gauge and a monthly calendar"></button>
+        <figcaption>Monthly attendance score and calendar</figcaption>
+      </figure>
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="5" aria-label="Enlarge screenshot: Settings quick actions and structured app logs"><img src="../assets/img/employee-portal/settings-and-app-logs.png" width="1869" height="835" loading="lazy" alt="Settings page with quick action buttons and an All App Logs table showing INFO entries from WidgetCheckIn and WidgetGoOnBreak"></button>
+        <figcaption>Settings quick actions and structured app logs</figcaption>
+      </figure>
+      <figure class="reveal">
+        <button class="shot" type="button" data-shot="6" aria-label="Enlarge screenshot: Client accounts linked to Zoho Recruit"><img src="../assets/img/employee-portal/accounts.png" width="1870" height="841" loading="lazy" alt="Accounts list with account names and Recruit Client IDs, blurred"></button>
+        <figcaption>Client accounts linked to Zoho Recruit</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<dialog class="lightbox" id="lightbox" aria-label="Screenshot viewer">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-bar">
+    <span class="lb-cap" id="lb-cap"></span>
+    <span class="lb-nav">
+      <button type="button" id="lb-prev" aria-label="Previous screenshot">←</button>
+      <button type="button" id="lb-next" aria-label="Next screenshot">→</button>
+      <button type="button" id="lb-close" aria-label="Close viewer">close ✕</button>
+    </span>
+  </div>
+</dialog>
+
+<!-- CTA -->
+<section class="sec">
+  <div class="wrap">
+    <h2>See the full app</h2>
+    <div class="cta-band">
+      <div class="prose" style="max-width:640px;">
+        <p style="margin:0;">Source code for the full app (28 forms, 47 functions, workflows, schedules, approvals and pages) is not published here. I'm happy to walk through the full app in an interview.</p>
+      </div>
+      <a class="btn primary" href="#contact">Request a walkthrough</a>
+    </div>
+    <p class="note" style="margin-top:30px;">Designed and built by Andrés Mendoza as a full-stack Zoho Creator project: data model, Deluge back end, UI, automation and integrations.</p>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div>
+      <div class="mono" style="color:var(--text); font-size:15px; margin-bottom:6px;">Let's build something.</div>
+      <div class="mute" style="font-size:14px;">Panama City, Panama</div>
+    </div>
+    <div class="links">
+      <a href="mailto:andresmendozaerna@gmail.com">email</a>
+      <a href="https://github.com/AndresDarioMendoza2910" target="_blank" rel="noopener">github</a>
+      <a href="https://www.linkedin.com/in/andr%C3%A9s-dar%C3%ADo-mendoza-bernal-420b4b1bb/" target="_blank" rel="noopener">linkedin</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.esm.min.mjs';
+mermaid.initialize({
+  startOnLoad: false,
+  theme: 'base',
+  fontFamily: "'JetBrains Mono', monospace",
+  themeVariables: {
+    darkMode: true,
+    background: '#111823',
+    primaryColor: '#161e2b',
+    primaryTextColor: '#e6edf3',
+    primaryBorderColor: '#4ad3a8',
+    secondaryColor: '#111823',
+    tertiaryColor: '#0d1117',
+    lineColor: '#9aa7b4',
+    textColor: '#e6edf3',
+    clusterBkg: '#0d1117',
+    clusterBorder: '#232d3b',
+    edgeLabelBackground: '#111823',
+    actorBkg: '#161e2b',
+    actorBorder: '#4ad3a8',
+    actorTextColor: '#e6edf3',
+    actorLineColor: '#64727f',
+    signalColor: '#9aa7b4',
+    signalTextColor: '#e6edf3',
+    labelBoxBkgColor: '#161e2b',
+    labelBoxBorderColor: '#5aa9ff',
+    labelTextColor: '#e6edf3',
+    loopTextColor: '#9aa7b4',
+    noteBkgColor: '#161e2b',
+    noteTextColor: '#e6edf3',
+    attributeBackgroundColorOdd: '#161e2b',
+    attributeBackgroundColorEven: '#111823',
+    fontSize: '13px'
+  }
+});
+await mermaid.run({ querySelector: 'pre.mermaid' });
+</script>
+<script>
+// scroll reveal + count-up
+const seen=new WeakSet();
+function countUp(el){
+  const target=parseFloat(el.dataset.count), suf=el.dataset.suffix||"";
+  const dur=1100, t0=performance.now();
+  function tick(t){
+    const p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e)+suf;
+    if(p<1) requestAnimationFrame(tick); else el.textContent=target+suf;
+  }
+  requestAnimationFrame(tick);
+}
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// screenshot lightbox
+const shots=[...document.querySelectorAll('.shot')].sort((a,b)=>a.dataset.shot-b.dataset.shot);
+const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lb-img'), lbCap=document.getElementById('lb-cap');
+let cur=0;
+function showShot(i){
+  cur=(i+shots.length)%shots.length;
+  const img=shots[cur].querySelector('img');
+  lbImg.src=img.src; lbImg.alt=img.alt;
+  lbCap.textContent=(cur+1)+' / '+shots.length+' · '+shots[cur].closest('figure').querySelector('figcaption').textContent.split('. All screenshots')[0];
+}
+shots.forEach((b,i)=>b.addEventListener('click',()=>{showShot(i); lb.showModal();}));
+document.getElementById('lb-prev').onclick=()=>showShot(cur-1);
+document.getElementById('lb-next').onclick=()=>showShot(cur+1);
+document.getElementById('lb-close').onclick=()=>lb.close();
+lb.addEventListener('click',e=>{ if(e.target===lb) lb.close(); });
+lb.addEventListener('keydown',e=>{ if(e.key==='ArrowLeft') showShot(cur-1); if(e.key==='ArrowRight') showShot(cur+1); });
+lb.addEventListener('close',()=>shots[cur].focus());
+
+document.querySelectorAll('.stat [data-count]').forEach(c=>{
+  const o=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting&&!seen.has(c)){seen.add(c);countUp(c);o.unobserve(c);}})},{threshold:.5});
+  o.observe(c);
+});
+</script>
+</body>
+</html>
